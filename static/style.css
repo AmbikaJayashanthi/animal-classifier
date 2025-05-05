@@ -1,61 +1,101 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f5f5;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     margin: 0;
     padding: 0;
+    backdrop-filter: blur(4px);
 }
 
 .container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 2rem;
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    margin: 60px auto;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     text-align: center;
+    color: #fff;
 }
 
 h1 {
-    color: #333;
-    margin-bottom: 1rem;
+    font-size: 2.8rem;
+    color: #ffffff;
+    margin-bottom: 1.2rem;
+    text-shadow: 1px 1px 4px #000;
+}
+
+h2, h3, h4 {
+    color: #ffffff;
+    text-shadow: 1px 1px 2px #000;
 }
 
 form {
-    margin: 20px 0;
+    margin: 25px 0;
 }
 
 input[type="file"] {
-    padding: 10px;
+    padding: 12px;
     margin-top: 10px;
+    background: rgba(255, 255, 255, 0.25);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    font-size: 16px;
+    backdrop-filter: blur(6px);
+    cursor: pointer;
 }
 
-button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
+input[type="file"]::file-selector-button {
+    background-color: rgba(255, 255, 255, 0.3);
     border: none;
-    color: white;
-    font-size: 16px;
+    padding: 8px 12px;
+    color: #000;
     border-radius: 6px;
     cursor: pointer;
 }
 
+button {
+    margin-top: 18px;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #4CAF50, #81C784);
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
 button:hover {
-    background-color: #45a049;
+    background: linear-gradient(135deg, #388E3C, #66BB6A);
+    transform: scale(1.05);
 }
 
 .result {
     margin-top: 30px;
+    background: rgba(0, 0, 0, 0.25);
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .result h2 span {
-    color: #0077cc;
+    color: #ffe400;
+    font-weight: bold;
+    font-size: 1.4rem;
 }
 
 .preview img {
     margin-top: 15px;
-    max-width: 100%;
+    max-width: 90%;
     height: auto;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    border: 2px solid #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }

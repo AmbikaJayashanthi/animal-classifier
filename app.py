@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 import tensorflow as tf
 import numpy as np
 from tensorflow.keras.preprocessing import image
@@ -21,6 +21,7 @@ except FileNotFoundError:
 @app.route("/", methods=["GET", "POST"])
 def home():
     prediction = None
+    background_image = url_for('static', filename='images/background.jpg')  # Get image path for background
     if request.method == "POST":
         file = request.files["file"]
         if file:
@@ -43,10 +44,9 @@ def home():
                 prediction = "Dangerous Animal"
 
             # Pass prediction and metrics to the template
-            return render_template("index.html", prediction=prediction, metrics=metrics)
+            return render_template("index.html", prediction=prediction, metrics=metrics, background_image=background_image)
 
-    # Render the home page with the form
-    return render_template("index.html", prediction=prediction, metrics=metrics)
+    return render_template("index.html", prediction=prediction, metrics=metrics, background_image=background_image)
 
 if __name__ == "__main__":
     app.run(debug=True)

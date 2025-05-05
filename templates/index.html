@@ -2,25 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Animal Classifier</title>
+    <title>Animal Danger Classifier</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body style="background-image: url('{{ background_image }}');">
     <div class="container">
         <h1>🐾 Animal Danger Classifier</h1>
         <form action="/" method="post" enctype="multipart/form-data">
             <input type="file" name="file" accept="image/*" required>
+            <br>
             <button type="submit">Classify Image</button>
         </form>
 
         {% if prediction %}
         <div class="result">
             <h2>🔍 Prediction: <span>{{ prediction }}</span></h2>
-            <h3>📊 Model Accuracy: {{ metrics.val_accuracy }}</h3>
-            <h3>📉 Model Loss: {{ metrics.val_loss }}</h3>
+            <h3>📊 Accuracy: {{ metrics.val_accuracy }}</h3>
+            <h3>📉 Loss: {{ metrics.val_loss }}</h3>
             <div class="preview">
                 <h4>🖼️ Uploaded Image:</h4>
-                <img src="{{ url_for('static', filename='uploaded_image.jpg') }}" alt="Uploaded Image">
+                <img src="{{ url_for('static', filename='uploaded_image.jpg') }}" alt="Uploaded">
             </div>
         </div>
         {% endif %}
