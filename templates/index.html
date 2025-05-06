@@ -4,79 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animal Classifier</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f8ff;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-image: url('https://example.com/your-background-image.jpg'); /* Replace with a wildlife-themed background image */
-            background-size: cover;
-            background-position: center;
-        }
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-        }
-        form {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            text-align: center;
-        }
-        input[type="file"] {
-            margin: 20px 0;
-            padding: 10px;
-            border: 2px solid #4CAF50;
-            border-radius: 5px;
-            font-size: 1em;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        img {
-            max-width: 300px;
-            border-radius: 10px;
-            margin-top: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
-        .prediction {
-            font-size: 1.5em;
-            margin-top: 20px;
-            color: #333;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Animal Classifier</h1>
-    <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" accept="image/*" required>
-        <button type="submit">Upload</button>
-    </form>
+    <div class="background"></div>
 
-    {% if show_image %}
-        <div class="prediction">{{ prediction }}</div>
-        <img src="{{ url_for('static', filename='uploaded_image.jpg') }}" alt="Uploaded Image">
-    {% endif %}
+    <div class="glass-card">
+        <h1>Animal Classifier</h1>
+        <form class="upload-form" method="POST" enctype="multipart/form-data">
+            <label for="file-upload" class="custom-file-upload">Choose Image</label>
+            <input id="file-upload" type="file" name="file" accept="image/*" required>
+            <span id="file-name" class="file-name">No file chosen</span>
+            <button type="submit">Upload</button>
+        </form>
+
+        {% if show_image %}
+        <div class="result-card">
+            <div class="prediction">{{ prediction }}</div>
+            <div class="preview">
+                <img src="{{ url_for('static', filename='uploaded_image.jpg') }}" alt="Uploaded">
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        const fileUpload = document.getElementById("file-upload");
+        const fileName = document.getElementById("file-name");
+
+        fileUpload.addEventListener("change", function () {
+            if (fileUpload.files.length > 0) {
+                fileName.textContent = fileUpload.files[0].name;
+            } else {
+                fileName.textContent = "No file chosen";
+            }
+        });
+    </script>
 </body>
 </html>
