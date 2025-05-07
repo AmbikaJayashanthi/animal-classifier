@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 import tensorflow as tf
 import numpy as np
 from tensorflow.keras.preprocessing import image
@@ -18,8 +18,12 @@ class_labels = os.listdir('data')  # This assumes your classes are directly unde
 @app.route("/", methods=["GET", "POST"])
 def home():
     prediction = None
+<<<<<<< HEAD
     show_image = False
 
+=======
+    background_image = url_for('static', filename='images/background.jpg')  # Get image path for background
+>>>>>>> 99a12584beb6af3c251260fa35f768767df17bbd
     if request.method == "POST":
         if "camera" in request.form and "captured_image" in request.form:
             # Handle captured camera image (base64)
@@ -39,6 +43,7 @@ def home():
                 prediction = "No image data received from camera."
                 return render_template("index.html", prediction=prediction, show_image=False)
 
+<<<<<<< HEAD
 
             image_pil = Image.open(BytesIO(image_bytes)).convert("RGB")
             image_pil = image_pil.resize((128, 128))
@@ -66,6 +71,12 @@ def home():
         show_image = True
 
     return render_template("index.html", prediction=prediction, show_image=show_image)
+=======
+            # Pass prediction and metrics to the template
+            return render_template("index.html", prediction=prediction, metrics=metrics, background_image=background_image)
+
+    return render_template("index.html", prediction=prediction, metrics=metrics, background_image=background_image)
+>>>>>>> 99a12584beb6af3c251260fa35f768767df17bbd
 
 if __name__ == "__main__":
     app.run(debug=True)
